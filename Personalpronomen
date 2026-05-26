@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Немецкий язык: Местоимения | Интерактивные задания</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FFF8EC;  /* light milky cream */
+            font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            color: #2C2C2C;            /* warm dark */
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        /* основной контейнер */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* заголовки и типографика */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1E3A5F;            /* deep navy blue */
+            border-left: 6px solid #E5A93D;
+            padding-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subhead {
+            color: #2C2C2C;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #E5A93D;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        /* секции заданий */
+        .task-section {
+            background: rgba(255, 248, 236, 0.7);
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(229, 169, 61, 0.25);
+            transition: box-shadow 0.2s;
+        }
+
+        .task-section:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .task-title {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #1E3A5F;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .task-title span {
+            background: #E5A93D;
+            color: #1E3A5F;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 60px;
+        }
+
+        .task-desc {
+            color: #4a5568;
+            margin-bottom: 1.6rem;
+            font-size: 0.95rem;
+            border-left: 3px solid #C44B3C;
+            padding-left: 14px;
+            background: #FFF8EC;
+        }
+
+        /* сетка для вопросов */
+        .questions-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .card-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1rem 1.4rem;
+            border: 1px solid #F0E2CD;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .card-item:hover {
+            border-color: #E5A93D;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: #1E3A5F;
+            background: #FFF8EC;
+            padding: 0.5rem 0.8rem;
+            border-radius: 16px;
+            display: inline-block;
+            width: auto;
+        }
+
+        /* кнопка показать ответ */
+        .btn-answer {
+            background-color: #E5A93D;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1E3A5F;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .btn-answer:hover {
+            background-color: #C44B3C;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(196, 75, 60, 0.2);
+        }
+
+        .btn-answer:active {
+            transform: translateY(1px);
+        }
+
+        /* блок ответа (скрыт по умолчанию) */
+        .answer-box {
+            display: none;
+            background: #FFF8EC;
+            border-left: 4px solid #C44B3C;
+            padding: 0.8rem 1rem;
+            margin-top: 0.9rem;
+            border-radius: 16px;
+            font-size: 1rem;
+            color: #2C2C2C;
+            font-weight: 500;
+            word-break: break-word;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .answer-box strong {
+            color: #1E3A5F;
+            font-weight: 700;
+        }
+
+        .highlight {
+            background-color: #E5A93D20;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+
+        hr {
+            margin: 0.5rem 0 1rem;
+            border: 0;
+            height: 1px;
+            background: #E5A93D30;
+        }
+
+        /* дополнительные стили для немецкого текста */
+        .german-word {
+            font-weight: 600;
+            color: #1E3A5F;
+            background: #FFF0DF;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #E5A93D40;
+            font-size: 0.8rem;
+            color: #2C2C2C;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem;
+            }
+            .task-section {
+                padding: 1.2rem;
+            }
+            .task-title {
+                font-size: 1.4rem;
+                flex-wrap: wrap;
+            }
+            .question-text {
+                font-size: 1rem;
+            }
+            .btn-answer {
+                padding: 6px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📘 Deutsche Personalpronomen</h1>
+    <div class="subhead">Интерактивные упражнения — нажми на кнопку, чтобы проверить себя</div>
+
+    <!-- ЗАДАНИЕ 1: СОПОСТАВЛЕНИЕ -->
+    <div class="task-section">
+        <div class="task-title">
+            <span>1</span> Сопоставь местоимение с переводом
+        </div>
+        <div class="task-desc">
+            К каждому немецкому местоимению подбери правильный русский эквивалент. Нажми «Ответ», чтобы увидеть верную пару.
+        </div>
+        <div class="questions-grid">
+            <!-- wir -->
+            <div class="card-item">
+                <div class="question-text">🇩🇪 <span class="german-word">wir</span> → ?</div>
+                <button class="btn-answer" data-target="answer-wir">📌 Показать ответ</button>
+                <div id="answer-wir" class="answer-box"><strong>✅ wir</strong> — <strong>мы</strong> (1-е лицо, мн.ч.)</div>
+            </div>
+            <!-- du -->
+            <div class="card-item">
+                <div class="question-text">🇩🇪 <span class="german-word">du</span> → ?</div>
+                <button class="btn-answer" data-target="answer-du">📌 Показать ответ</button>
+                <div id="answer-du" class="answer-box"><strong>✅ du</strong> — <strong>ты</strong> (неформальное, ед.ч.)</div>
+            </div>
+            <!-- sie (она) -->
+            <div class="card-item">
+                <div class="question-text">🇩🇪 <span class="german-word">sie</span> (она) → ?</div>
+                <button class="btn-answer" data-target="answer-sie-she">📌 Показать ответ</button>
+                <div id="answer-sie-she" class="answer-box"><strong>✅ sie</strong> — <strong>она</strong> (женский род, ед.ч.)</div>
+            </div>
+            <!-- Sie (вежливое) -->
+            <div class="card-item">
+                <div class="question-text">🇩🇪 <span class="german-word">Sie</span> (с заглавной) → ?</div>
+                <button class="btn-answer" data-target="answer-sie-formal">📌 Показать ответ</button>
+                <div id="answer-sie-formal" class="answer-box"><strong>✅ Sie</strong> — <strong>Вы</strong> (вежливая форма, ед. и мн.ч.)</div>
+            </div>
+            <!-- ihr -->
+            <div class="card-item">
+                <div class="question-text">🇩🇪 <span class="german-word">ihr</span> → ?</div>
+                <button class="btn-answer" data-target="answer-ihr">📌 Показать ответ</button>
+                <div id="answer-ihr" class="answer-box"><strong>✅ ihr</strong> — <strong>вы</strong> (группа друзей, неформальное мн.ч.)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 2: ВСТАВЬ er / sie / es -->
+    <div class="task-section">
+        <div class="task-title">
+            <span>2</span> Вставь подходящее местоимение: <span class="german-word">er, sie</span> или <span class="german-word">es</span>
+        </div>
+        <div class="task-desc">
+            Определи род существительного и замени его правильным личным местоимением. Нажми на кнопку, чтобы узнать верный вариант.
+        </div>
+        <div class="questions-grid">
+            <!-- 1. Tasche -->
+            <div class="card-item">
+                <div class="question-text">📝 Die Tasche ist schön. → ___ ist schön.</div>
+                <button class="btn-answer" data-target="answer-tasche">🔎 Показать ответ</button>
+                <div id="answer-tasche" class="answer-box">
+                    <strong>✔️ Правильный ответ:</strong> <span class="german-word">sie</span><br>
+                    <em>Die Tasche</em> (женский род) → <strong>sie</strong>.<br>
+                    → <strong>Sie ist schön.</strong>
+                </div>
+            </div>
+            <!-- 2. Kind -->
+            <div class="card-item">
+                <div class="question-text">📝 Das Kind ist klein. → ___ ist klein.</div>
+                <button class="btn-answer" data-target="answer-kind">🔎 Показать ответ</button>
+                <div id="answer-kind" class="answer-box">
+                    <strong>✔️ Правильный ответ:</strong> <span class="german-word">es</span><br>
+                    <em>Das Kind</em> (средний род) → <strong>es</strong>.<br>
+                    → <strong>Es ist klein.</strong>
+                </div>
+            </div>
+            <!-- 3. Hund -->
+            <div class="card-item">
+                <div class="question-text">📝 Der Hund heißt Rex. → ___ heißt Rex.</div>
+                <button class="btn-answer" data-target="answer-hund">🔎 Показать ответ</button>
+                <div id="answer-hund" class="answer-box">
+                    <strong>✔️ Правильный ответ:</strong> <span class="german-word">er</span><br>
+                    <em>Der Hund</em> (мужской род) → <strong>er</strong>.<br>
+                    → <strong>Er heißt Rex.</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 3: ПЕРЕВЕДИ НА НЕМЕЦКИЙ (личные местоимения) -->
+    <div class="task-section">
+        <div class="task-title">
+            <span>3</span> Переведи на немецкий, используя личные местоимения
+        </div>
+        <div class="task-desc">
+            В каждом предложении вставь правильное местоимение. Вспомни спряжение глаголов. Кликни, чтобы увидеть верный перевод.
+        </div>
+        <div class="questions-grid">
+            <!-- Я пью кофе -->
+            <div class="card-item">
+                <div class="question-text">☕ Я пью кофе. → ______ trinke Kaffee.</div>
+                <button class="btn-answer" data-target="answer-ich-kaffee">📖 Проверить</button>
+                <div id="answer-ich-kaffee" class="answer-box">
+                    <strong>✅ Правильный ответ:</strong> <span class="german-word">Ich</span><br>
+                    → <strong>Ich trinke Kaffee.</strong><br>
+                    <span class="highlight">(личное местоимение 1-го лица ед.ч.)</span>
+                </div>
+            </div>
+            <!-- Ты учишься? -->
+            <div class="card-item">
+                <div class="question-text">📚 Ты учишься (учить = lernen)? → Lernst ______ ?</div>
+                <button class="btn-answer" data-target="answer-du-lernst">📖 Проверить</button>
+                <div id="answer-du-lernst" class="answer-box">
+                    <strong>✅ Правильный ответ:</strong> <span class="german-word">du</span><br>
+                    → <strong>Lernst du?</strong><br>
+                    <span class="highlight">(неформальное "ты" в вопросе)</span>
+                </div>
+            </div>
+            <!-- Вы (несколько друзей) слушаете музыку -->
+            <div class="card-item">
+                <div class="question-text">🎵 Вы (несколько друзей) слушаете музыку. → ______ hört Musik.</div>
+                <button class="btn-answer" data-target="answer-ihr-musik">📖 Проверить</button>
+                <div id="answer-ihr-musik" class="answer-box">
+                    <strong>✅ Правильный ответ:</strong> <span class="german-word">Ihr</span> (с большой буквы в начале предложения)<br>
+                    → <strong>Ihr hört Musik.</strong><br>
+                    <span class="highlight">(местоимение ihr для неформального множественного "вы")</span>
+                </div>
+            </div>
+            <!-- Они живут в Москве -->
+            <div class="card-item">
+                <div class="question-text">🏙️ Они живут в Москве. → ______ wohnen in Moskau.</div>
+                <button class="btn-answer" data-target="answer-sie-wohnen">📖 Проверить</button>
+                <div id="answer-sie-wohnen" class="answer-box">
+                    <strong>✅ Правильный ответ:</strong> <span class="german-word">Sie</span> (они)<br>
+                    → <strong>Sie wohnen in Moskau.</strong><br>
+                    <span class="highlight">(местоимение 3-го лица мн.ч. - они)</span>
+                </div>
+            </div>
+            <!-- Господин Мюллер, откуда Вы? -->
+            <div class="card-item">
+                <div class="question-text">🧑‍💼 Господин Мюллер, откуда Вы? → Herr Müller, woher kommen ______ ?</div>
+                <button class="btn-answer" data-target="answer-sie-formal-kommen">📖 Проверить</button>
+                <div id="answer-sie-formal-kommen" class="answer-box">
+                    <strong>✅ Правильный ответ:</strong> <span class="german-word">Sie</span> (вежливое Вы)<br>
+                    → <strong>Herr Müller, woher kommen Sie?</strong><br>
+                    <span class="highlight">(Вежливое обращение на "Вы" всегда с заглавной буквы)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        ✨ Нажимай на любую кнопку, чтобы проверить себя. Ответы появляются только по клику.
+    </footer>
+</div>
+
+<script>
+    // Универсальная функция для toggle ответов (показывать/скрывать по клику)
+    // При загрузке все ответы скрыты (display: none). По клику на кнопку переключаем видимость связанного блока.
+    // Используем data-target для связи кнопки с id ответа.
+    document.addEventListener('DOMContentLoaded', function() {
+        // Находим все кнопки с классом .btn-answer
+        const allButtons = document.querySelectorAll('.btn-answer');
+        
+        allButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Получаем id целевого блока из data-target
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    const answerDiv = document.getElementById(targetId);
+                    if (answerDiv) {
+                        // переключаем видимость (toggle)
+                        if (answerDiv.style.display === 'none' || answerDiv.style.display === '') {
+                            answerDiv.style.display = 'block';
+                        } else {
+                            answerDiv.style.display = 'none';
+                        }
+                    } else {
+                        // fallback: если data-target не задан, ищем ближайший .answer-box
+                        const nextAnswer = this.nextElementSibling;
+                        if (nextAnswer && nextAnswer.classList.contains('answer-box')) {
+                            if (nextAnswer.style.display === 'none' || nextAnswer.style.display === '') {
+                                nextAnswer.style.display = 'block';
+                            } else {
+                                nextAnswer.style.display = 'none';
+                            }
+                        }
+                    }
+                } else {
+                    // для случаев, если data-target отсутствует — ищем следующий элемент .answer-box
+                    const nextBox = this.nextElementSibling;
+                    if (nextBox && nextBox.classList.contains('answer-box')) {
+                        if (nextBox.style.display === 'none' || nextBox.style.display === '') {
+                            nextBox.style.display = 'block';
+                        } else {
+                            nextBox.style.display = 'none';
+                        }
+                    }
+                }
+            });
+        });
+
+        // Инициализация: гарантируем, что все ответы скрыты (на случай, если в CSS прописано иное)
+        const allAnswers = document.querySelectorAll('.answer-box');
+        allAnswers.forEach(answer => {
+            answer.style.display = 'none';
+        });
+    });
+</script>
+</body>
+</html>
